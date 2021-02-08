@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Formation Spring Boot : Services Web</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="panel-group" style="margin-top: 40px">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span th:utext="${userName}"></span>
+                </div>
+                <div class="panel-body">
+
+                    <div th:switch="${produitList}">
+                        <h1 th:case="null">Aucun Produit dans votre panier !</h1>
+                        <div th:case="*" class="container">
+                            <h3>Liste des Produits dans mon panier :</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Prix Unitaire</th>
+                                        <th>Categorie</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <script>
+                                        var total = 0;
+                                    </script>
+                                    <tr th:each="ProduitVo : ${produitList}">
+                                        <td th:text="${ProduitVo.name}"></td>
+                                        <td th:text="${ProduitVo.description}"></td>
+                                        <td th:text="${ProduitVo.prixUnitaire}"></td>
+                                        <td th:text="${ProduitVo.categorie.getDescription()}"></td>
+                                        <script th:inline="javascript">
+                                            /*<![CDATA[*/
+                                            total += /*[[${ProduitVo.prixUnitaire}]]*/ 'dont hesitate, buy our products ';
+                                            /*]]>*/
+                                        </script>
+
+                                    </tr>
+                                    <p id=> LE TOTALE A pier est : </p>
+                                    <script>
+                                        document.write(total);
+                                    </script>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>
+                            <a href="/produit/list">list des produit Produit </a></br></br>
+                            <a href="/panier/confirm">** confirm your order by sending an email **</a>
+
+                            <!-- <a th:href="@{/panier/confirm/{id}(id=${(#fr)}">Ajouter Au Panier</a> -->
+
+                        </p>
+                        <!-- <form action="/panier/confirm" method="POST" class="form-signin" th:with="list=${produitList}">
+                            <p>
+                                <button type="submit"> Confirm your order </button>
+                                <a th:href="@{/panier/confirm/{list}(list=${produitList})}">** confirm your order **</a>
+                            </p>
+                        </form> -->
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
