@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Boot Ecommerce project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form th:action="@{/produit/editsave}" method="POST" class="form-signin" th:object="${produitVo}">
+            <h3 class="form-signin-heading" th:text="Nouveau"></h3>
+            <br/>
+
+            <input th:field="*{name}" type="text" id="name" name="name" th:placeholder="Name" class="form-control" /> <br/>
+            <input th:field="*{id}" type="hidden" id="id" name="id" th:placeholder="Id" class="form-control" /> <br/>
+            <input th:field="*{description}" type="text" id="description" name="description" th:placeholder="Description" class="form-control" /> <br />
+            <input th:field="*{prixUnitaire}" type="text" id="prixUnitaire" name="prixUnitaire" th:placeholder="PrixUnitaire" class="form-control" /> <br />
+            <input th:field="*{quantite}" type="text" id="quantite" name="quantite" th:placeholder="Quantite" class="form-control" /> <br />
+            <input th:field="*{categorie.description}" type="text" id="categorie" name="categorie" th:placeholder="Categorie" class="form-control" /> <br />
+
+
+            <div align="center" th:if="${param.error}">
+                <p style="font-size: 20; color: #FF1C19;">Erreur !!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit" th:text="Update"></button>
+        </form>
+    </div>
+</body>
+
+</html>

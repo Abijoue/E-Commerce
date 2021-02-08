@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Boot Ecommerce project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div th:switch="${list}">
+                <div class="col">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 fw-normal"><span th:text=${produitVo.name} th:remove="tag"></span> </h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title"><span th:text="${produitVo.prixUnitaire}" th:remove="tag"></span> $</small>
+                            </h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li th:text="${produitVo.description}"></li>
+                                <li th:text="${produitVo.prixUnitaire}"></li>
+                                <li th:text="${produitVo.categorie.description}"></li>
+                                <li><a th:href="@{/produit/edit/{id}(id=${produitVo.id})}">Edit</a></li>
+                                <li><a th:href="@{/produit/delete/{id}(id=${produitVo.id})}">Delete</a></li>
+                            </ul>
+                            <li><a class="w-100 btn btn-lg btn-outline-primary" th:href="@{/produit/ajouterElement/{id}(id=${produitVo.id})}">Ajouter Au Panier</a></td>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <a href="/produit/add">Ajouter un nouvel Produit </a>
+                </p> -->
+
+        <div class="panel-group" style="margin-top: 40px">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span th:utext="${userName}"></span>
+                </div>
+                <div class="panel-body">
+
+                    <div th:switch="${list}">
+                        <h1 th:case="null">Aucun Produit !</h1>
+                        <div th:case="*" class="container">
+                            <h3>Liste des Produits :</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Prix Unitaire</th>
+                                        <th>Quantite</th>
+                                        <th>Categorie</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="produitVo : ${list}">
+                                        <td th:text="${produitVo.name}"></td>
+                                        <td th:text="${produitVo.description}"></td>
+                                        <td th:text="${produitVo.prixUnitaire}"></td>
+                                        <td th:text="${produitVo.categorie.description}"></td>
+                                        <td><a th:href="@{/produit/edit/{id}(id=${produitVo.id})}">Edit</a></td>
+                                        <td><a th:href="@{/produit/delete/{id}(id=${produitVo.id})}">Delete</a></td>
+                                        <td><a th:href="@{/produit/ajouterElement/{id}(id=${produitVo.id})}">Ajouter Au Panier</a></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>
+                            <a href="/produit/add">Ajouter un nouvel Produit </a>
+                        </p>
+                        <p>
+                            <a href="/panier/list">Mon Panier </a>
+                        </p>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
